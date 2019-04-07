@@ -118,6 +118,7 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+    'log'=>'errorlog',
 
     'key' => env('APP_KEY'),
 
