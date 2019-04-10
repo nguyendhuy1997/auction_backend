@@ -6,6 +6,10 @@ use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use App\Bidder;
 use App\Product;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class AccountController extends Controller
 {
@@ -38,7 +42,22 @@ class AccountController extends Controller
         $product->id_seller=$request->idSeller;
         $product->image = $request->image;
         $product->save();
-        return $request->dayEnd;
+        
+        
+        //SAVE FILE IMAGE//
+        $file_data = $request->image;
+        $file_name = 'product-'.$dayStart.''; //generating unique file name; 
+        @list($type, $file_data) = explode(';', $file_data);
+        @list(, $file_data) = explode(',', $file_data);
+        if ($file_data != "") { // storing image in storage/app/public Folder 
+            \Storage::disk('public')->put($file_name, base64_decode($file_data));
+        }
+
+        return 'aaaa';
+        // $imageType=$request->imageType;
+        // $pos = strrpos($imageType, ".");
+        // $imageType=substr($imageType, $pos, $pos+3);
 
     }
+
 }
