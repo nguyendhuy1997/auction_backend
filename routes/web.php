@@ -15,6 +15,18 @@ Route::get('/product', [
     'as' => 'homepage',
     'uses' => 'ProductController@getProduct'
 ]);
+Route::get('/producttimeout', [
+    'as' => 'producttimeout',
+    'uses' => 'ProductController@getProductTimeOut'
+]);
+Route::get('/producthighest', [
+    'as' => 'producthighest',
+    'uses' => 'ProductController@getProductHighest'
+]);
+Route::post('/relativeproduct', [
+    'as' => 'relativeproduct',
+    'uses' => 'ProductController@getRelativeProduct'
+]);
 Route::get('/product/{id}', [
     'as' => 'single',
     'uses' => 'ProductController@getSingle'
@@ -27,7 +39,14 @@ Route::get('/productcategory/{id}', [
     'as' => 'productcategory',
     'uses' => 'ProductController@getProductCategory'
 ]);
-
+Route::post('/loadmore', [
+    'as' => 'loadmore',
+    'uses' => 'ProductController@loadMore'
+]);
+Route::post('/autocomplete', [
+    'as' => 'autocomplete',
+    'uses' => 'ProductController@autoComplete'
+]);
 //<--Product API-->>//
 
 
@@ -69,6 +88,22 @@ Route::post('/history', [
     'as' => 'history',
     'uses' => 'AccountController@history',
 ]);
+Route::post('/lastbid', [
+    'as' => 'lastbid',
+    'uses' => 'AccountController@lastBid',
+]);
+Route::post('/wishlist', [
+    'as' => 'wishlist',
+    'uses' => 'AccountController@wishList',
+]);
+Route::post('/wishstatus', [
+    'as' => 'wishstatus',
+    'uses' => 'AccountController@wishStatus',
+]);
+Route::post('/getwishlist', [
+    'as' => 'getwishlist',
+    'uses' => 'AccountController@getwishlist',
+]);
 Route::post('/postproduct', [
     'as' => 'postproduct',
     'uses' => 'AccountController@postProduct',
@@ -108,7 +143,18 @@ Route::post('/admin/product/decline', [
     'as' => 'admin/product/decline',
     'uses' => 'AdminController@declineProduct',
 ]);
-
+Route::post('/admin/login', [
+    'as' => 'admin/login',
+    'uses' => 'AdminController@postLogin',
+]);
+Route::get('/admin/getuser', [
+    'as' => 'admin/getuser',
+    'uses' => 'AdminController@getUser',
+]);
+Route::post('/admin/updateuser', [
+    'as' => 'admin/updateuser',
+    'uses' => 'AdminController@updateUser',
+]);
 // Route::get('/admin/getuser', [
 //     'as' => 'admin/getuser',
 //     'uses' => 'AdminController@getUser',

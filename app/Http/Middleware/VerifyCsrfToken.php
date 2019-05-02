@@ -26,14 +26,20 @@ class VerifyCsrfToken extends Middleware
         'http://127.0.0.1:8000/buynow',
         'http://127.0.0.1:8000/countdown',
         'http://127.0.0.1:8000/history',
+        'http://127.0.0.1:8000/lastbid',
+        'http://127.0.0.1:8000/wishlist',
+        'http://127.0.0.1:8000/wishstatus',
+        'http://127.0.0.1:8000/getwishlist',
         'http://127.0.0.1:8000/postproduct',
-
+        'http://127.0.0.1:8000/loadmore',
+        'http://127.0.0.1:8000/autocomplete',
+        'http://127.0.0.1:8000/relativeproduct',
 
         //admin//
         'http://127.0.0.1:8000/admin/product/accept',
         'http://127.0.0.1:8000/admin/product/decline',
-        'http://127.0.0.1:8000/admin/user/accept',
-        'http://127.0.0.1:8000/admin/user/decline'
+        'http://127.0.0.1:8000/admin/updateuser',
+        'http://127.0.0.1:8000/admin/login',
         //admin//
 
         

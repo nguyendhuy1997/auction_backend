@@ -30,7 +30,9 @@ class RegisterController extends Controller
         $user->name=$request->username;
         $user->email=$request->email;
         $user->password=Hash::make($request->password);
+        $user->money=0;
         $user->save();
-        return $request->email;
+      
+
     }
 }

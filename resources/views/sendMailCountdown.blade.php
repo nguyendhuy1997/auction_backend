@@ -23,24 +23,23 @@
     </style>
 Dear <?php echo($name) ?>
 <br>
-Congratulation you to win the product :
+Your Product :
 <br>
 <table>
     <tr>
       <th>Product</th>
-      <th>Name</th>
       <th>Day Start</th> 
       <th>Day End</th>
       <th>Price</th>
     </tr>
     <tr>
-      <td><img width="100px" height="100px" src="http://127.0.0.1:8000/storage/<?php echo($product->image);?>" alt=""></td>
-      <td><?php echo($product->name);?></td>
+      <td><img src="http://127.0.0.1:8000/storage/<?php echo($product->image);?>" alt=""></td>
       <td><?php echo($product->day_start);?></td>
       <td><?php echo($product->day_end);?></td>
       <td><?php echo($product->current_price);?></td>
     </tr>
   </table>
+  Has been time out.
   <br>
-  We will contact you soon. 
-  Thank you for using our service.
+  If you want to re-auction, please send a new post. We will check soon.
+  Thank you for using our service. 
