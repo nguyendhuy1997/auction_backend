@@ -93,7 +93,7 @@ class BidController extends Controller
                     'status' => 0,
                 ));
                 $product = Product::where('id_product', $request->id_product)->first();
-                if($product->current_price==$product->first_price)
+                if($request->current_price==$request->first_price)
                 {
                     $product = Product::where('id_product', $request->id_product)->first();
                     $seller = Users::where('id', $request->id_seller)->first();
