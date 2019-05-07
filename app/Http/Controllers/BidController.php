@@ -95,7 +95,6 @@ class BidController extends Controller
                 $product = Product::where('id_product', $request->id_product)->first();
                 if($request->current_price==$request->first_price)
                 {
-                    $product = Product::where('id_product', $request->id_product)->first();
                     $seller = Users::where('id', $request->id_seller)->first();
                     $data = ['name' => $seller->name, 'email' => $seller->email, 'product' => $product];
                     Mail::send('sendMailCountdown', $data, function ($message) use ($seller) {
@@ -104,7 +103,6 @@ class BidController extends Controller
                     });
                 }
                 else{
-                    $product = Product::where('id_product', $request->id_product)->first();
                     $mytime = Carbon::now();
                     $bill = new Bill();
                     $bill->id_seller=$request->id_seller;
