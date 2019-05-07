@@ -19,12 +19,12 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'https://auctionbackend.herokuapp.com/login',
-        'https://auctionbackend.herokuapp.com/register',
-        'https://auctionbackend.herokuapp.com/checkemail',
-        'https://auctionbackend.herokuapp.com/bid',
-        'https://auctionbackend.herokuapp.com/buynow',
-        'https://auctionbackend.herokuapp.com/countdown',
+        '/login',
+        '/register',
+        '/checkemail',
+        '/bid',
+        '/buynow',
+        '/countdown',
         'https://auctionbackend.herokuapp.com/history',
         'https://auctionbackend.herokuapp.com/lastbid',
         'https://auctionbackend.herokuapp.com/wishlist',
