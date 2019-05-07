@@ -19,27 +19,27 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        'http://127.0.0.1:8000/login',
-        'http://127.0.0.1:8000/register',
-        'http://127.0.0.1:8000/checkemail',
-        'http://127.0.0.1:8000/bid',
-        'http://127.0.0.1:8000/buynow',
-        'http://127.0.0.1:8000/countdown',
-        'http://127.0.0.1:8000/history',
-        'http://127.0.0.1:8000/lastbid',
-        'http://127.0.0.1:8000/wishlist',
-        'http://127.0.0.1:8000/wishstatus',
-        'http://127.0.0.1:8000/getwishlist',
-        'http://127.0.0.1:8000/postproduct',
-        'http://127.0.0.1:8000/loadmore',
-        'http://127.0.0.1:8000/autocomplete',
-        'http://127.0.0.1:8000/relativeproduct',
+        'https://auctionbackend.herokuapp.com/login',
+        'https://auctionbackend.herokuapp.com/register',
+        'https://auctionbackend.herokuapp.com/checkemail',
+        'https://auctionbackend.herokuapp.com/bid',
+        'https://auctionbackend.herokuapp.com/buynow',
+        'https://auctionbackend.herokuapp.com/countdown',
+        'https://auctionbackend.herokuapp.com/history',
+        'https://auctionbackend.herokuapp.com/lastbid',
+        'https://auctionbackend.herokuapp.com/wishlist',
+        'https://auctionbackend.herokuapp.com/wishstatus',
+        'https://auctionbackend.herokuapp.com/getwishlist',
+        'https://auctionbackend.herokuapp.com/postproduct',
+        'https://auctionbackend.herokuapp.com/loadmore',
+        'https://auctionbackend.herokuapp.com/autocomplete',
+        'https://auctionbackend.herokuapp.com/relativeproduct',
 
         //admin//
-        'http://127.0.0.1:8000/admin/product/accept',
-        'http://127.0.0.1:8000/admin/product/decline',
-        'http://127.0.0.1:8000/admin/updateuser',
-        'http://127.0.0.1:8000/admin/login',
+        'https://auctionbackend.herokuapp.com/admin/product/accept',
+        'https://auctionbackend.herokuapp.com/admin/product/decline',
+        'https://auctionbackend.herokuapp.com/admin/updateuser',
+        'https://auctionbackend.herokuapp.com/admin/login',
         //admin//
 
         
