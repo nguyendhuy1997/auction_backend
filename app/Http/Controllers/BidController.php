@@ -52,11 +52,11 @@ class BidController extends Controller
             $bidder->save();
             ////////////////////
             $bill = new Bill();
-            $bill->id_seller=$request->id_seller;
-            $bill->id_bidder=$request->id_bidder;
-            $bill->id_product=$request->id_product;
-            $bill->price=$request->priceBid;
-            $bill->datetime=$mytime;
+            $bill->id_seller = $request->id_seller;
+            $bill->id_bidder = $request->id_bidder;
+            $bill->id_product = $request->id_product;
+            $bill->price = $request->priceBid;
+            $bill->datetime = $mytime;
             $bill->save();
             ////////////////////
             Product::where('id_product', $request->id_product)->update(array(
@@ -83,48 +83,46 @@ class BidController extends Controller
             return 'false';
         }
 
-          
+
     }
     public function countDown(Request $request)
     {
-       
+        $product = Product::where('id_product', $request->id_product)->first();
+        if($product->status==1){
+            if ($request->current_price == $request->first_price) {
+                $seller = Users::where('id', $request->id_seller)->first();
+                $data = ['name' => $seller->name, 'email' => $seller->email, 'product' => $product];
+                Mail::send('sendMailCountdown', $data, function ($message) use ($seller) {
+                    $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
+                    $message->to($seller->email, $seller->name)->subject("Auction Anoucement");
+                });
+            } else {
+                $bill = new Bill();
+                $bill->id_seller = $request->id_seller;
+                $bill->id_bidder = $request->id_bidder;
+                $bill->id_product = $request->id_product;
+                $bill->price = $request->current_price;
+                $bill->datetime = Carbon::now();
+                $bill->save();
+                $seller = Users::where('id', $request->id_seller)->first();
+                $data = ['name' => $seller->name, 'email' => $seller->email, 'product' => $product];
+                Mail::send('sendMailSeller', $data, function ($message) use ($seller) {
+                    $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
+                    $message->to($seller->email, $seller->name)->subject("Auction Anoucement");
+                });
+                $bidders = Users::where('id', $request->id_bidder)->first();
+                $data = ['name' => $bidders->name, 'email' => $bidders->email, 'product' => $product];
+                Mail::send('sendMailBidder', $data, function ($message) use ($bidders) {
+                    $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
+                    $message->to($bidders->email, $bidders->name)->subject("Auction Anoucement");
+                });
+            }
+            Product::where('id_product', $request->id_product)->update(array(
+                'status' => 0,
+            ));
+        }
+        
 
-                Product::where('id_product', $request->id_product)->update(array(
-                    'status' => 0,
-                ));
-                $product = Product::where('id_product', $request->id_product)->first();
-                if($request->current_price==$request->first_price)
-                {
-                    $seller = Users::where('id', $request->id_seller)->first();
-                    $data = ['name' => $seller->name, 'email' => $seller->email, 'product' => $product];
-                    Mail::send('sendMailCountdown', $data, function ($message) use ($seller) {
-                        $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
-                        $message->to($seller->email, $seller->name)->subject("Auction Anoucement");
-                    });
-                }
-                else{
-                    $mytime = Carbon::now();
-                    $bill = new Bill();
-                    $bill->id_seller=$request->id_seller;
-                    $bill->id_bidder=$request->id_bidder;
-                    $bill->id_product=$request->id_product;
-                    $bill->price=$request->priceBid;
-                    $bill->datetime=$mytime;
-                    $bill->save();
-                    $seller = Users::where('id', $request->id_seller)->first();
-                    $data = ['name' => $seller->name, 'email' => $seller->email, 'product' => $product];
-                    Mail::send('sendMailSeller', $data, function ($message) use ($seller) {
-                        $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
-                        $message->to($seller->email, $seller->name)->subject("Auction Anoucement");
-                    });
-                    $bidders = Users::where('id', $request->id_bidder)->first();
-                    $data = ['name' => $bidders->name, 'email' => $bidders->email, 'product' => $product];
-                    Mail::send('sendMailBidder', $data, function ($message) use ($bidders) {
-                        $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
-                        $message->to($bidders->email, $bidders->name)->subject("Auction Anoucement");
-                    });
-                }
-              
 
     }
     public function sendMail()
