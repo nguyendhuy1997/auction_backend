@@ -19,25 +19,33 @@ class BidController extends Controller
     public function postBid(Request $request)
     {
         try {
-            $mytime = Carbon::now();
-            $bidder = new Bidder();
-            $bidder->id_seller = $request->id_seller;
-            $bidder->id_product = $request->id_product;
-            $bidder->price_bid = $request->priceBid;
-            $bidder->id_bidder = $request->id_bidder;
-            $bidder->date_bid = $mytime;
-            $bidder->save();
-            ////////////////////
-            Product::where('id_product', $request->id_product)->update(array(
-                'current_price' => $request->priceBid,
-                'id_bidder' => $request->id_bidder,
-            ));
-            event(new BidEvent($request->priceBid, $request->id_bidder, $request->id_product));
+            $product::where('id_product',$request->id_product)->first();
+            if(int($request->priceBid)<$product->current_price+$product->step_price)
+            {
+                return 'false';
+            }
+            else{
+                $mytime = Carbon::now();
+                $bidder = new Bidder();
+                $bidder->id_seller = $request->id_seller;
+                $bidder->id_product = $request->id_product;
+                $bidder->price_bid = $request->priceBid;
+                $bidder->id_bidder = $request->id_bidder;
+                $bidder->date_bid = $mytime;
+                $bidder->save();
+                ////////////////////
+                Product::where('id_product', $request->id_product)->update(array(
+                    'current_price' => $request->priceBid,
+                    'id_bidder' => $request->id_bidder,
+                ));
+                event(new BidEvent($request->priceBid, $request->id_bidder, $request->id_product));
+            }
+          
         } catch (\Exception $e) {
             return 'false';
         }
 
-        return 'aaaa';
+       
     }
     public function postBuyNow(Request $request)
     {
