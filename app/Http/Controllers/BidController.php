@@ -20,7 +20,7 @@ class BidController extends Controller
     {
         try {
             $product::where('id_product',$request->id_product)->first();
-            if(int($request->priceBid)<($product->current_price+$product->step_price))
+            if(($request->priceBid)<($product->current_price+$product->step_price))
             {
                 return 'false';
             }
