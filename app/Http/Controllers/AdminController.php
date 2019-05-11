@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Users;
 use Illuminate\Support\Facades\Auth;
+use App\Bill;
 
 
 class AdminController extends Controller
@@ -26,6 +27,10 @@ class AdminController extends Controller
       
     
       
+    }
+    public function getBill(){
+        $bills = Bill::get();
+        return $bills;
     }
     public function getProduct()
     {

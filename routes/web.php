@@ -135,6 +135,10 @@ Route::get('/admin/getproduct', [
     'as' => 'admin/getproduct',
     'uses' => 'AdminController@getProduct',
 ]);
+Route::get('/admin/getbill', [
+    'as' => 'admin/getbill',
+    'uses' => 'AdminController@getBill',
+]);
 Route::post('/admin/product/accept', [
     'as' => 'admin/product/accept',
     'uses' => 'AdminController@acceptProduct',
