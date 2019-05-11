@@ -33,7 +33,7 @@ Your Product :
       <th>Price</th>
     </tr>
     <tr>
-      <td><img src="http://127.0.0.1:8000/storage/<?php echo($product->image);?>" alt=""></td>
+      <td><img src="https://auctionbackend.herokuapp.com/storage/<?php echo($product->image);?>" alt=""></td>
       <td><?php echo($product->day_start);?></td>
       <td><?php echo($product->day_end);?></td>
       <td><?php echo($product->current_price);?></td>

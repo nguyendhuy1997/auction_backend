@@ -34,7 +34,7 @@ Congratulation you to win the product :
       <th>Price</th>
     </tr>
     <tr>
-      <td><img width="100px" height="100px" src="http://127.0.0.1:8000/storage/<?php echo($product->image);?>" alt=""></td>
+      <td><img width="100px" height="100px" src="https://auctionbackend.herokuapp.com/storage/<?php echo($product->image);?>" alt=""></td>
       <td><?php echo($product->name);?></td>
       <td><?php echo($product->day_start);?></td>
       <td><?php echo($product->day_end);?></td>
