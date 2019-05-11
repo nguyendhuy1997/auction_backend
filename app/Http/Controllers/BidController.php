@@ -19,12 +19,12 @@ class BidController extends Controller
     public function postBid(Request $request)
     {
         try {
-                $product = Product::where('id_product',$request->id_product)->first();
-                if($request->priceBid<($product->currnet_price+$product->step_price))
-                {
-                    return false;
-                }
-                else{
+                // $product = Product::where('id_product',$request->id_product)->first();
+                // if($request->priceBid<($product->currnet_price+$product->step_price))
+                // {
+                //     return false;
+                // }
+                // else{
                     $mytime = Carbon::now();
                     $bidder = new Bidder();
                     $bidder->id_seller = $request->id_seller;
@@ -39,7 +39,7 @@ class BidController extends Controller
                         'id_bidder' => $request->id_bidder,
                     ));
                     event(new BidEvent($request->priceBid, $request->id_bidder, $request->id_product));
-                }
+                // }
                
         
           
