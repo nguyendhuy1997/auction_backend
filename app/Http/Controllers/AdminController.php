@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use App\Product;
 use App\Users;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,13 @@ class AdminController extends Controller
         Product::where('id_product',$request->id_product)->update(array(
             'status'=>1,
         ));
+        $product=Product::where('id_product',$request->id_product)->first();
+        $seller =Users::where('id',$product->id_seller)->first();
+            $data = ['product' => $product,'email' => $seller->email,'name'=>$seller->name];
+            Mail::send('sendMailAccept', $data, function ($message) use ($seller) {
+                $message->from('nguyendhuy1997@gmail.com', 'Auction Admin');
+                $message->to($seller->email, $seller->name)->subject("Auction Anoucement");
+            });
     }
     public function declineProduct(Request $request){
         $product=Product::where('id_product',$request->id_product)->delete();
